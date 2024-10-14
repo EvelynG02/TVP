@@ -1,98 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Variable Font Demo</title>
-    <link rel="stylesheet" href="https://use.typekit.net/idh3bfk.css">
-  <style>
-        body {
-            font-family: "Luke Variable", sans-serif;
-font-variation-settings: "LINE" 100, "FILL" 100;
-            display: flex;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Virginian-Pilot</title>
+  
+  <link rel="stylesheet" href="https://use.typekit.net/idh3bfk.css">
 
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        #text {
-            font-weight: 400;
-            font-size: 125%;
-            stroke-width: 1px;
-            color: black;
-            stroke: black;
-            fill: black;
-            text-stroke: 1px black;
-        }
-        .slider-container {
-            margin: 10px;
-        }
-    </style>
+  <style>
+    
+    body {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .font-sample {
+      font-size: 4rem;
+      transition: all 0.3s;
+        font-family: "luke-variable", sans-serif;
+    font-variation-settings: "LINE" 100, "FILL" 100;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="slider-container">
-        <label for="fontWeight">Font Weight:</label>
-        <input type="range" id="fontWeight" min="100" max="900" value="400" step="1">
-    </div>
-    
-    <div class="slider-container">
-        <label for="fontSize">Font Size:</label>
-        <input type="range" id="fontSize" min="50" max="200" value="125" step="1">
-    </div>
-    
-    <div class="slider-container">
-        <label for="strokeWidth">Stroke Width:</label>
-        <input type="range" id="strokeWidth" min="0" max="10" value="1" step="0.1">
-    </div>
-    
-    <div class="slider-container">
-        <label for="strokeColor">Stroke Color:</label>
-        <input type="color" id="strokeColor" value="#000000">
-    </div>
-    
-    <div class="slider-container">
-        <label for="fontColor">Font Color:</label>
-        <input type="color" id="fontColor" value="#000000">
-    </div>
-    
-    <p id="text">This is a variable font demo!</p>
+  <h1>Control the Variable Font</h1>
+  
+  <div class="font-sample" id="fontSample">
+    The Virginian-Pilot
+  </div>
 
-    <script>
-        const text = document.getElementById('text');
-        const fontWeightSlider = document.getElementById('fontWeight');
-        const fontSizeSlider = document.getElementById('fontSize');
-        const strokeWidthSlider = document.getElementById('strokeWidth');
-        const strokeColorPicker = document.getElementById('strokeColor');
-        const fontColorPicker = document.getElementById('fontColor');
+  <label for="fontWeightSlider">Font Weight: </label>
+  <input type="range" id="fontWeightSlider" min="10" max="900" value="400">
+  <br>
 
-        // Update font weight
-        fontWeightSlider.addEventListener('input', () => {
-            text.style.fontWeight = fontWeightSlider.value;
-        });
+  <label for="strokeWidthSlider">Stroke Width: </label>
+  <input type="range" id="strokeWidthSlider" min="0" max="5" value="0">
+  <br>
 
-        // Update font size
-        fontSizeSlider.addEventListener('input', () => {
-            text.style.fontSize = fontSizeSlider.value + '%';
-        });
+  <label for="fontColorPicker">Font Color: </label>
+  <input type="color" id="fontColorPicker" value="#000000">
+  <br>
 
-        // Update stroke width
-        strokeWidthSlider.addEventListener('input', () => {
-            text.style.webkitTextStrokeWidth = strokeWidthSlider.value + 'px';
-        });
+  <label for="strokeColorPicker">Stroke Color: </label>
+  <input type="color" id="strokeColorPicker" value="#000000">
+  <br>
 
-        // Update stroke color
-        strokeColorPicker.addEventListener('input', () => {
-            text.style.webkitTextStrokeColor = strokeColorPicker.value;
-        });
+  <script>
+    const fontSample = document.getElementById('fontSample');
+    const fontWeightSlider = document.getElementById('fontWeightSlider');
+    const strokeWidthSlider = document.getElementById('strokeWidthSlider');
+    const fontColorPicker = document.getElementById('fontColorPicker');
+    const strokeColorPicker = document.getElementById('strokeColorPicker');
 
-        // Update font color
-        fontColorPicker.addEventListener('input', () => {
-            text.style.color = fontColorPicker.value;
-        });
-    </script>
-    
+    // Update the font properties based on user input
+    fontWeightSlider.addEventListener('input', () => {
+      fontSample.style.fontVariationSettings = `'wght' ${fontWeightSlider.value}`;
+    });
+
+    strokeWidthSlider.addEventListener('input', () => {
+      fontSample.style.webkitTextStrokeWidth = `${strokeWidthSlider.value}px`;
+    });
+
+    fontColorPicker.addEventListener('input', () => {
+      fontSample.style.color = fontColorPicker.value;
+    });
+
+    strokeColorPicker.addEventListener('input', () => {
+      fontSample.style.webkitTextStrokeColor = strokeColorPicker.value;
+    });
+  </script>
 </body>
 </html>
